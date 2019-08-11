@@ -3,7 +3,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
-
+const PORT = 8090;
 // 2：配置数据库连接池
 var pool = mysql.createPool({
     host:"127.0.0.1",
@@ -34,7 +34,9 @@ server.use(session({
 server.use(express.static("public")); 
 
 // 监听端口号3000
-server.listen(3000);
+server.listen(PORT,()=>{
+    console.log("Servere listening "+PORT+" ...");
+});
 // 相关接口的配置
 // 功能1：完成用户登录操作
 // 接口相关测试

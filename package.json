@@ -1,0 +1,36 @@
+{
+  "name": "zxkf_serve",
+  "version": "1.0.0",
+  "description": "在线看房app服务器子系统",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express-session": "^1.16.2",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxkf-newWorld/zxkf_serve.git"
+  },
+  "keywords": [
+    "在线看房",
+    "zxkf",
+    "online",
+    "在线",
+    "看房"
+  ],
+  "author": "HePeng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zxkf-newWorld/zxkf_serve/issues"
+  },
+  "homepage": "https://github.com/zxkf-newWorld/zxkf_serve#readme"
+}
