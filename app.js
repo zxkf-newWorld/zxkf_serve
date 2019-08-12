@@ -3,6 +3,8 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
+const bodyParser = require("body-parser");
+
 const PORT = 8090;
 // 2：配置数据库连接池
 var pool = mysql.createPool({
@@ -45,4 +47,9 @@ server.get("/demo",(req,res)=>{
     console.log("IN接口");
     // 接口代码
     console.log("OUT接口");
+});
+server.post('/reg',(req,res)=>{
+    var obj = req.body;
+    console.log(obj);
+    console.log("vue 使用post接口发送的数据，接收的数据");
 });
