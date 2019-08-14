@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const qs = require("querystring");
 
 const PORT = 8090;
 // 2：配置数据库连接池
@@ -20,8 +21,8 @@ var server = express();
 // 3：配置跨域模块
 server.use(cors({
     // 允许跨域访问程序地址列表
-    origin:["http://127.0.0.1:8080",
-            "http://localhost:8080"
+    origin:["http://127.0.0.1:8090",
+            "http://localhost:8090"
     ],
     credentials:true,//请求验证
 }));
@@ -49,7 +50,9 @@ server.get("/demo",(req,res)=>{
     console.log("OUT接口");
 });
 server.post('/reg',(req,res)=>{
+    console.log("已经进入了post请求");
     var obj = req.body;
     console.log(obj);
+    console.log(res);
     console.log("vue 使用post接口发送的数据，接收的数据");
 });
