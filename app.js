@@ -1,21 +1,13 @@
 //  1:加载第三方模块
 const express = require("express");
-const mysql = require("mysql");
+// const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const qs = require("querystring");
+// 引入数据库池
 
 const PORT = 8090;
-// 2：配置数据库连接池
-var pool = mysql.createPool({
-    host:"127.0.0.1",
-    user:"root",
-    password:"",
-    port:3306,
-    database:"xzkf",
-    connectionLimit:15
-});
 //创建服务器
 var server = express();
 // 3：配置跨域模块
@@ -44,15 +36,20 @@ server.listen(PORT,()=>{
 // 功能1：完成用户登录操作
 // 接口相关测试
 // http://127.0.0.1:3000/接口名称（路径）
-server.get("/demo",(req,res)=>{
-    console.log("IN接口");
-    // 接口代码
-    console.log("OUT接口");
-});
-server.post('/reg',(req,res)=>{
-    console.log("已经进入了post请求");
-    var obj = req.body;
-    console.log(obj);
-    console.log(res);
-    console.log("vue 使用post接口发送的数据，接收的数据");
-});
+// server.get("/demo",(req,res)=>{
+//     console.log("IN接口");
+//     // 接口代码
+//     console.log("OUT接口");
+// });
+// server.post('/reg',(req,res)=>{
+//     console.log("已经进入了post请求");
+//     var obj = req.body;
+//     console.log(obj);
+//     console.log(res);
+//     console.log("vue 使用post接口发送的数据，接收的数据");
+// });
+// 引入相关的功能接口
+const demo = require("./routes/demo.js");
+const index = require("./routes/index.js");
+// server.use("/demo",demo);
+server.use("/index",index);
