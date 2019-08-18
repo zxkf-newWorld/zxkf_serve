@@ -13,8 +13,8 @@ var server = express();
 // 3：配置跨域模块
 server.use(cors({
     // 允许跨域访问程序地址列表
-    origin:["http://127.0.0.1:8090",
-            "http://localhost:8090"
+    origin:["http://127.0.0.1:8091",
+            "http://localhost:8091"
     ],
     credentials:true,//请求验证
 }));
@@ -35,7 +35,7 @@ server.listen(PORT,()=>{
 // 相关接口的配置
 // 功能1：完成用户登录操作
 // 接口相关测试
-// http://127.0.0.1:3000/接口名称（路径）
+// http://127.0.0.1:8090/接口名称（路径）
 // server.get("/demo",(req,res)=>{
 //     console.log("IN接口");
 //     // 接口代码
