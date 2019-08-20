@@ -7,21 +7,21 @@ const pool = require("../pool.js");
 // 1:整租功能接口
 // 通过单击整租按钮，进入房屋信息列表
 router.get("/fullrent",(req,res)=>{
-    var obj = req.query;
-    // 查询是整租的房屋信息列表
-    // let rentType = obj.renttype;//租住类型
-    let cityBelong = obj.citybelong;//房屋所在城市
-    let title = obj.title=="合租"?0:1;
-    console.log(title,cityBelong);
-    // let cityBelong = "西安";
-    const sql = " SELECT * FROM zxkf_product_list WHERE title = ? AND citybelong = ?";
-    pool.query(sql,[title,cityBelong],(err,result)=>{
+    let obj = req.query;
+    let title = obj.title;
+    let citybelong = obj.cityBelong;
+    console.log(obj);
+    // SELECT * FROM zxkf_product_list WHERE title=0 AND citybelong="西安";
+    let sql = `SELECT * FROM zxkf_product_list WHERE title=? AND citybelong=?`;
+    pool.query(sql,[title,citybelong],(err,result)=>{
         console.log("已经开始查询数据库了");
         if(err) throw err;
         // console.log(result.affectedRows);
         console.log(result);
-        if(result.length > 0){
+        if(result.length>0){
             res.send({code:1,msg:"查询成功",dataArray:result});
+        }else{
+            res.send({code:-1,msg:"数据不存在"})
         }
     });
 });

@@ -7,17 +7,19 @@ const bodyParser = require("body-parser");
 const qs = require("querystring");
 // 引入数据库池
 
-const PORT = 8090;
+const PORT = 3000;
 //创建服务器
 var server = express();
 // 3：配置跨域模块
 server.use(cors({
     // 允许跨域访问程序地址列表
-    origin:["http://127.0.0.1:8091",
-            "http://localhost:8091"
+    origin:["http://127.0.0.1:8090",
+            "http://localhost:8090"
     ],
     credentials:true,//请求验证
 }));
+//使用body-parser中间件
+server.use(bodyParser.urlencoded({extended:false}));
 // 4：配置session模块
 server.use(session({
     secret:"128位字符串",//安全字符串
@@ -35,7 +37,7 @@ server.listen(PORT,()=>{
 // 相关接口的配置
 // 功能1：完成用户登录操作
 // 接口相关测试
-// http://127.0.0.1:8090/接口名称（路径）
+// http://127.0.0.1:3000/接口名称（路径）
 // server.get("/demo",(req,res)=>{
 //     console.log("IN接口");
 //     // 接口代码
@@ -49,7 +51,7 @@ server.listen(PORT,()=>{
 //     console.log("vue 使用post接口发送的数据，接收的数据");
 // });
 // 引入相关的功能接口
-const demo = require("./routes/demo.js");
+// const demo = require("./routes/demo.js");
 const index = require("./routes/index.js");
 // server.use("/demo",demo);
 server.use("/index",index);
