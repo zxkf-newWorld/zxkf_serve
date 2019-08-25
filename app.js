@@ -53,6 +53,4 @@ server.listen(PORT,()=>{
 // 引入相关的功能接口
 // const demo = require("./routes/demo.js");
 const index = require("./routes/index.js");
-const findRoomMates = require("./routes/findRoomMates.js");
 server.use("/index",index);
-server.use("/findRoomMates",findRoomMates);
