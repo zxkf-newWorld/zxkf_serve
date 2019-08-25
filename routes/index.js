@@ -9,26 +9,31 @@ let selectFuc = function(obj,res){
         if(err) throw err;
         if(result.length > 0){
             // 循环遍历result,查询每一个符合的房屋的信息
-            var totalResult = [];
-            for (let elem of result) {
+            var totalResult = {};
+            var to = [];
+            for (var elem of result) {
                 let sql1 = "SELECT * FROM zxkf_product_details WHERE fid=?"
                 // 通过房屋列表对应的房屋id查询相关的房屋信息
-                pool.query(sql1,[elem.pid],(err,result2)=>{
+                var p = pool.query(sql1,[elem.pid],function(err,result2){
                     if(err) throw err;
                     if(result2.length > 0){
                         // console.log(result2[0]);
-                        totalResult = result2.concat(elem);
-                        console.log(totalResult);
+                        //arr对应的房屋列表+对应的详情
+                        // console.log(elem);
+                        // console.log(result2);
+                        to.push(Object.assign(totalResult,elem,result2[0]));
+                        // 遍历resutl2将其中的元素添加道elem对象中
                         // 对应房屋详情信息查询成功
                         // totalResult = totalResult.concat(result2);//将房屋信息整合一块:数组中有两条数据
                     }
                 });
             }
-            // console.log(totalResult);
-            // console.log(totalResult.length);
             // totalResult[0]是zxkf_product_details房屋详细信息，
             // totalResult[1]是zxkf_product_list房屋列表对应的房屋信息
-            res.send({code:1,msg:"查询成功",dataArray:totalResult});
+            setTimeout(function(){
+                console.log(to);
+                res.send({code:1,msg:"查询成功",dataArray:to});
+            },500);
         }else{
             // 数据查询失败，返回失败结果
             res.send({code:0,msg:"查询失败"});
