@@ -25,6 +25,27 @@ router.get("/fullrent",(req,res)=>{
         }
     });
 });
+
+// 2:找室友功能接口
+router.get("/findRoomMates",(req,res)=>{
+    // 获取发送过来的数据
+    let obj = {};
+    if(obj){
+        // 查询数据库
+        let sql = "SELECT * FROM zxkf_product_list WHERE title=2";
+        pool.query(sql,(err,result)=>{
+            if(err) throw err;
+            if(result.length > 0){
+                // 数据查询成功,返回结果
+                res.send({code:1,msg:"查询成功",dataArray:result});
+            }else{
+                // 数据查询失败，返回失败结果
+                res.send({code:0,msg:"查询失败"});
+            }
+        });
+    }
+})
+.catch(err=>console.log(err));
 // 首页猜你喜欢的商品列表的信息加载
 // router.get("/guessLike",(req,res)=>{
 //     let obj = req.query;
