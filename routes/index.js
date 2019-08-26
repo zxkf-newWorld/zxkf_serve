@@ -73,14 +73,24 @@ router.get("/pinpai",(req,res)=>{
 // 2:找室友功能接口 title=3
 router.get("/findRoomMates",(req,res)=>{
     // 获取发送过来的数据
-    let obj = { title:req.query.title, cityBelong:req.query.cityBelong };
-    console.log(obj);
-    if(obj){
-        // 调用公共的数据库查询函数
-        selectFuc(obj,res);
-    }
+    // let obj = { title:req.query.title, cityBelong:req.query.cityBelong };
+    // console.log(obj);
+    // if(obj){
+    //     // 调用公共的数据库查询函数
+    //     selectFuc(obj,res);
+    // }
+    pool.query("select * from zxkf_roommate",(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:'查询成功',dataArray:result});
+    })
 });
-
-
+// findRoomMatesDetails
+router.get("/findRoomMatesDetails",(req,res)=>{
+    var rid=req.query.rid;
+    pool.query("select * from zxkf_roommate where rid=?",[rid],(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:'查询成功',dataArray:result});
+    })
+});
 
 module.exports = router;
