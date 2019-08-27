@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 set names utf8;
 drop database if exists zxkf;
 create database zxkf charset=utf8;
 use zxkf;
+=======
+
+>>>>>>> 3a2fbe29ad7ac3b98f9a8b253a246bd404333c7f
 CREATE TABLE `carousel` (
   `pid` int(11) NOT NULL COMMENT '轮播图图片id',
   `purl` varchar(512) DEFAULT NULL COMMENT '轮播图图片url'
