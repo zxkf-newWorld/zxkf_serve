@@ -11,24 +11,25 @@ let selectFuc = function(obj,res){
             // 循环遍历result,查询每一个符合的房屋的信息
             var totalResult = {};
             //to对应的房屋列表+对应的详情
-            var to = [];
+            let to = [];
             for (let elem of result) {
                 let sql1 = "SELECT * FROM zxkf_product_details WHERE fid=?"
                 // 通过房屋列表对应的房屋id查询相关的房屋信息
-                pool.query(sql1,[elem.pid],function(err,result2){
-                    console.log(result2);
+                let tt = elem;
+                pool.query(sql1,[tt.pid],function(err,result2){
+                    console.log("我是tt");
+                    console.log(tt);
                     if(err) throw err;
                     //只有拥有详情信息，才会在页面显示
-                    if(result2.length > 0){
                         // totalResult = totalResult.concat(result2);//将房屋信息整合一块:数组中有两条数据
                         // 使用了es6语法：Object.assign合并对象赋值给新对象
-                        to.push(Object.assign(totalResult,elem,result2[0]));
-                    }
+                        Object.assign(totalResult,tt,result2[0]);
+                        to.push(totalResult);
                 });
             }
             // 使用计时器解决了pool.query异步任务的执行时间差，避免未获取到所需数据（可能由于延迟导致未获取到数据或者导致报错）
             setTimeout(function(){
-                console.log(to);
+                // console.log(to);
                 // to[0]是zxkf_product_details房屋详细信息，
                 // to[1]是zxkf_product_list房屋列表对应的房屋信息
                 res.send({code:1,msg:"查询成功",dataArray:to});
