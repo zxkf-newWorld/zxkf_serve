@@ -186,15 +186,15 @@ CREATE TABLE `zxkf_roommate` (
 --
 
 INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(null, './img/roomate/01.jpg', '太白南路', '2200 ', '整租', '限男', '2019.02.12', '1号地铁', '2019.09.18');
+(1, './img/roomate/01.jpg', '太白南路', '2200 ', '整租', '限男', '2019.02.12', '1号地铁', '2019.09.18');
 INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(null, './img/roomate/02.jpg', '科技路', '2000 ', '整租', '限男', '2019.02.18', '1号地铁', '2019.09.16');
+(2, './img/roomate/02.jpg', '科技路', '2000 ', '整租', '限男', '2019.02.18', '1号地铁', '2019.09.16');
 INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(null, './img/roomate/03.jpg', '高新路', '2300 ', '合租', '限女', '2019.02.19', '3号地铁', '2019.09.15');
+(3, './img/roomate/03.jpg', '高新路', '2300 ', '合租', '限女', '2019.02.19', '3号地铁', '2019.09.15');
 INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(null, './img/roomate/02.jpg', '小寨', '1200 ', '合租', '限男', '2019.02.18', '2号地铁', '2019.09.14');
+(4, './img/roomate/02.jpg', '小寨', '1200 ', '合租', '限男', '2019.02.18', '2号地铁', '2019.09.14');
 INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(null, './img/roomate/01.jpg', '雁塔路', '2100 ', '整租', '限女', '2019.02.13', '3号地铁', '2019.09.12');
+(5, './img/roomate/01.jpg', '雁塔路', '2100 ', '整租', '限女', '2019.02.13', '3号地铁', '2019.09.12');
 INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(null, './img/roomate/03.jpg', '太白南路', '2000 ', '整租', '限男', '2019.02.25', '2号地铁', '2019.09.13');
+(6, './img/roomate/03.jpg', '太白南路', '2000 ', '整租', '限男', '2019.02.25', '2号地铁', '2019.09.13');
 
