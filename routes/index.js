@@ -93,5 +93,9 @@ router.get("/findRoomMatesDetails",(req,res)=>{
         res.send({code:1,msg:'查询成功',dataArray:result});
     })
 });
+router.get("/tofunctions",(req,res)=>{
+    // 相关数据库操作
+    res.send({code:1,msg:'查询成功'});
+});
 
 module.exports = router;
