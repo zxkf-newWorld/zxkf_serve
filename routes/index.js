@@ -52,7 +52,7 @@ let selectFuc = function(obj,res){
             }
             // 使用计时器解决了pool.query异步任务的执行时间差，避免未获取到所需数据（可能由于延迟导致未获取到数据或者导致报错）
             setTimeout(function(){
-                console.log(to);
+                // console.log(to);
                 // to[0]是zxkf_product_details房屋详细信息，
                 // to[1]是zxkf_product_list房屋列表对应的房屋信息
                 res.send({code:1,msg:"查询成功",dataArray:to});
@@ -115,6 +115,10 @@ router.get("/findRoomMatesDetails",(req,res)=>{
         if(err) throw err;
         res.send({code:1,msg:'查询成功',dataArray:result});
     })
+});
+router.get("/tofunctions",(req,res)=>{
+    // 相关数据库操作
+    res.send({code:1,msg:'查询成功'});
 });
 
 module.exports = router;
