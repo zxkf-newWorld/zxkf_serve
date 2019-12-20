@@ -16,7 +16,7 @@ server.use(cors({
     origin:["http://127.0.0.1:8090",
             "http://localhost:8090"
     ],
-    credentials:true,//请求验证
+    credentials:true,//请求验证（可以验证Cookie等信息）
 }));
 //使用body-parser中间件
 server.use(bodyParser.urlencoded({extended:false}));

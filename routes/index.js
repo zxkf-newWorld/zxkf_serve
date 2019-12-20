@@ -2,27 +2,51 @@ const express = require("express");
 const router = express.Router();
 // 引入数据库池
 const pool = require("../pool.js");
-//创建功能函数的公共函数--数据库查询相关的操作
+
 let selectFuc = function(obj,res){
     let sql = `SELECT * FROM zxkf_product_list WHERE title=`+obj.title+` AND citybelong=?`;
-    pool.query(sql,[obj.cityBelong],(err,result)=>{
+    pool.query(sql,[obj.cityBelong], async (err,result)=>{
         if(err) throw err;
         if(result.length > 0){
+            console.log(result.length, '<<<<< result.length查询到的数据条数');
             // 循环遍历result,查询每一个符合的房屋的信息
-            var totalResult = {};
-            //to对应的房屋列表+对应的详情
-            var to = [];
             for (let elem of result) {
                 let sql1 = "SELECT * FROM zxkf_product_details WHERE fid=?"
                 // 通过房屋列表对应的房屋id查询相关的房屋信息
-                pool.query(sql1,[elem.pid],function(err,result2){
-                    console.log(result2);
+                console.log(elem.pid, '<<<<<<<elem.pid');
+                //创建功能函数的公共函数--数据库查询相关的操作
+                var totalResult = {};
+                //to对应的房屋列表+对应的详情
+                var to = [];
+                await pool.query(sql1,[elem.pid],function(err,result2){
+                    console.log(result2,'<<<<<result2房屋相关信息');
                     if(err) throw err;
                     //只有拥有详情信息，才会在页面显示
                     if(result2.length > 0){
+                        console.log(result2[0], '<<<<< result[0]');
                         // totalResult = totalResult.concat(result2);//将房屋信息整合一块:数组中有两条数据
                         // 使用了es6语法：Object.assign合并对象赋值给新对象
-                        to.push(Object.assign(totalResult,elem,result2[0]));
+                        // var ele = Object.assign(totalResult,result2[0]);
+                        // console.log(ele,'<<<<< ele');
+                        // 避免刷新导致相同数据累加
+                        if (to.length <= 0) {
+                            to[to.length] = result2[0];
+                        } else {
+                            to.forEach(element => {
+                                console.log(element,'<<<<< 我是to的成员元素');
+                                for (const key in element) {
+                                    if (element.hasOwnProperty(key)) {
+                                        // const element = element[key];
+                                        if (key !== result2[0][key]) {
+                                            // 即存在不同的属性值
+                                            break;
+                                        }
+                                    }
+                                }
+                                to[to.length] = result2[0];
+                            });
+                        }
+                        console.log(to, '<<<<< to inside query');
                     }
                 });
             }

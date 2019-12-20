@@ -125,18 +125,20 @@ CREATE TABLE `zxkf_product_details` (
   `elevatorrome` tinyint(4) DEFAULT NULL,
   `fid` int(11) DEFAULT NULL,
   `newpublish` tinyint(4) NOT NULL COMMENT '新上架：1 非新上架：0',
-  `paymonth` tinyint(4) NOT NULL COMMENT '租金月付'
+  `paymonth` tinyint(4) NOT NULL COMMENT '租金月付',
+  `imgurl` varchar(255) NOT NULL COMMENT '房屋图片',
+  `address` char(64) DEFAULT NULL COMMENT '商品标题+地址'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `zxkf_product_details`
 --
 
-INSERT INTO `zxkf_product_details` (`did`, `bed`, `closet`, `writetable`, `sofa`, `tv`, `kitchen`, `toilet`, `aircondition`, `onlyrestroom`, `notfirstfloor`, `refrigerator`, `nearsubway`, `elevatorrome`, `fid`, `newpublish`, `paymonth`) VALUES
-(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1),
-(2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 0),
-(3, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 6, 1, 0),
-(4, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 0, 0);
+INSERT INTO `zxkf_product_details` (`did`, `bed`, `closet`, `writetable`, `sofa`, `tv`, `kitchen`, `toilet`, `aircondition`, `onlyrestroom`, `notfirstfloor`, `refrigerator`, `nearsubway`, `elevatorrome`, `fid`, `newpublish`, `paymonth`,`imgurl`, `address`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, './img/like/like1.png', '西安雁塔太白南路'),
+(2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 0, './img/like/like4.png', '高新区 高新一路'),
+(3, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 6, 1, 0, './img/like/like3.png', '高新区 高新一路科技一路十字'),
+(4, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 0, 0, './img/like/like2.png', '高新区 高新一路科技一路十字');
 
 
 CREATE TABLE `zxkf_product_list` (
