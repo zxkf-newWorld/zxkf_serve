@@ -1,20 +1,73 @@
-set names utf8;
-drop database if exists zxkf;
-create database zxkf charset=utf8;
-use zxkf;
-CREATE TABLE `carousel` (
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2020-01-10 05:52:16
+-- 服务器版本： 10.1.13-MariaDB
+-- PHP Version: 5.6.20
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `zxkf`
+--
+CREATE DATABASE IF NOT EXISTS `zxkf` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `zxkf`;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `carousel`
+--
+
+DROP TABLE IF EXISTS `carousel`;
+CREATE TABLE IF NOT EXISTS `carousel` (
   `pid` int(11) NOT NULL COMMENT '轮播图图片id',
   `purl` varchar(512) DEFAULT NULL COMMENT '轮播图图片url'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `carousel` (`pid`, `purl`) VALUES(1, '');
+--
+-- 插入之前先把表清空（truncate） `carousel`
+--
 
-CREATE TABLE `collect` (
+TRUNCATE TABLE `carousel`;
+--
+-- 转存表中的数据 `carousel`
+--
+
+INSERT INTO `carousel` (`pid`, `purl`) VALUES
+(1, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `collect`
+--
+
+DROP TABLE IF EXISTS `collect`;
+CREATE TABLE IF NOT EXISTS `collect` (
   `cid` int(11) NOT NULL COMMENT '收藏房屋id',
   `userid` int(11) DEFAULT NULL COMMENT '用户id',
   `plistid` int(11) DEFAULT NULL COMMENT '对应的房屋列表的id',
   `cdate` bigint(20) DEFAULT NULL COMMENT '收藏时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 插入之前先把表清空（truncate） `collect`
+--
+
+TRUNCATE TABLE `collect`;
+--
+-- 转存表中的数据 `collect`
+--
 
 INSERT INTO `collect` (`cid`, `userid`, `plistid`, `cdate`) VALUES
 (1, 1, 1, NULL);
@@ -25,13 +78,19 @@ INSERT INTO `collect` (`cid`, `userid`, `plistid`, `cdate`) VALUES
 -- 表的结构 `orderlist`
 --
 
-CREATE TABLE `orderlist` (
+DROP TABLE IF EXISTS `orderlist`;
+CREATE TABLE IF NOT EXISTS `orderlist` (
   `oid` int(11) NOT NULL COMMENT '预约id',
   `userid` int(11) DEFAULT NULL COMMENT '用户id',
   `plistid` int(11) DEFAULT NULL COMMENT '预约的房屋所在的房屋列表的id',
   `odate` bigint(20) DEFAULT NULL COMMENT '预约时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- 插入之前先把表清空（truncate） `orderlist`
+--
+
+TRUNCATE TABLE `orderlist`;
 --
 -- 转存表中的数据 `orderlist`
 --
@@ -45,13 +104,19 @@ INSERT INTO `orderlist` (`oid`, `userid`, `plistid`, `odate`) VALUES
 -- 表的结构 `recommend`
 --
 
-CREATE TABLE `recommend` (
+DROP TABLE IF EXISTS `recommend`;
+CREATE TABLE IF NOT EXISTS `recommend` (
   `rid` int(11) NOT NULL COMMENT '推荐房屋的id',
   `userid` int(11) DEFAULT NULL COMMENT '推荐的用户的id',
   `plistid` int(11) DEFAULT NULL COMMENT '推荐的房屋所在的房屋列表id',
   `rdate` bigint(20) DEFAULT NULL COMMENT '推荐日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- 插入之前先把表清空（truncate） `recommend`
+--
+
+TRUNCATE TABLE `recommend`;
 --
 -- 转存表中的数据 `recommend`
 --
@@ -65,7 +130,8 @@ INSERT INTO `recommend` (`rid`, `userid`, `plistid`, `rdate`) VALUES
 -- 表的结构 `vipuser`
 --
 
-CREATE TABLE `vipuser` (
+DROP TABLE IF EXISTS `vipuser`;
+CREATE TABLE IF NOT EXISTS `vipuser` (
   `vuid` int(11) NOT NULL COMMENT '找室友用户id',
   `vuname` varchar(32) DEFAULT NULL COMMENT '找室友用户姓名',
   `upwd` varchar(32) DEFAULT NULL COMMENT '用户密码',
@@ -76,6 +142,11 @@ CREATE TABLE `vipuser` (
   `gender` tinyint(4) DEFAULT NULL COMMENT '用户性别'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- 插入之前先把表清空（truncate） `vipuser`
+--
+
+TRUNCATE TABLE `vipuser`;
 --
 -- 转存表中的数据 `vipuser`
 --
@@ -89,7 +160,8 @@ INSERT INTO `vipuser` (`vuid`, `vuname`, `upwd`, `email`, `phone`, `avatar`, `us
 -- 表的结构 `zxkf_login`
 --
 
-CREATE TABLE `zxkf_login` (
+DROP TABLE IF EXISTS `zxkf_login`;
+CREATE TABLE IF NOT EXISTS `zxkf_login` (
   `uid` int(11) NOT NULL COMMENT '用户注册id',
   `uname` varchar(32) DEFAULT NULL COMMENT '用户注册姓名',
   `upwd` varchar(128) DEFAULT NULL COMMENT '注册密码',
@@ -101,6 +173,11 @@ CREATE TABLE `zxkf_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- 插入之前先把表清空（truncate） `zxkf_login`
+--
+
+TRUNCATE TABLE `zxkf_login`;
+--
 -- 转存表中的数据 `zxkf_login`
 --
 
@@ -108,7 +185,14 @@ INSERT INTO `zxkf_login` (`uid`, `uname`, `upwd`, `email`, `phone`, `avatar`, `u
 (1, 'tom', '123456', 'tom@163.com', '13322224444', 'public/images/user/', '天外飞仙', 1),
 (2, 'liangrandongtao', '123456', 'liangrandongtao@qq.com', '13366669999', NULL, '亮然东涛', 0);
 
-CREATE TABLE `zxkf_product_details` (
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `zxkf_product_details`
+--
+
+DROP TABLE IF EXISTS `zxkf_product_details`;
+CREATE TABLE IF NOT EXISTS `zxkf_product_details` (
   `did` int(11) NOT NULL,
   `bed` tinyint(4) DEFAULT NULL,
   `closet` tinyint(4) DEFAULT NULL,
@@ -127,21 +211,35 @@ CREATE TABLE `zxkf_product_details` (
   `newpublish` tinyint(4) NOT NULL COMMENT '新上架：1 非新上架：0',
   `paymonth` tinyint(4) NOT NULL COMMENT '租金月付',
   `imgurl` varchar(255) NOT NULL COMMENT '房屋图片',
-  `address` char(64) DEFAULT NULL COMMENT '商品标题+地址'
+  `address` char(64) DEFAULT NULL COMMENT '商品标题+地址',
+  `housesize` smallint(255) NOT NULL COMMENT '房间面积',
+  `floor` smallint(255) NOT NULL COMMENT '房间楼层',
+  `price` varchar(10) NOT NULL COMMENT '房屋租金'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- 插入之前先把表清空（truncate） `zxkf_product_details`
+--
+
+TRUNCATE TABLE `zxkf_product_details`;
 --
 -- 转存表中的数据 `zxkf_product_details`
 --
 
-INSERT INTO `zxkf_product_details` (`did`, `bed`, `closet`, `writetable`, `sofa`, `tv`, `kitchen`, `toilet`, `aircondition`, `onlyrestroom`, `notfirstfloor`, `refrigerator`, `nearsubway`, `elevatorrome`, `fid`, `newpublish`, `paymonth`,`imgurl`, `address`) VALUES
-(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, './img/like/like1.png', '西安雁塔太白南路'),
-(2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 0, './img/like/like4.png', '高新区 高新一路'),
-(3, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 6, 1, 0, './img/like/like3.png', '高新区 高新一路科技一路十字'),
-(4, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 0, 0, './img/like/like2.png', '高新区 高新一路科技一路十字');
+INSERT INTO `zxkf_product_details` (`did`, `bed`, `closet`, `writetable`, `sofa`, `tv`, `kitchen`, `toilet`, `aircondition`, `onlyrestroom`, `notfirstfloor`, `refrigerator`, `nearsubway`, `elevatorrome`, `fid`, `newpublish`, `paymonth`, `imgurl`, `address`, `housesize`, `floor`, `price`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, './img/like/like1.png', '西安雁塔太白南路', 15, 10, '1200'),
+(2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 5, 1, 0, './img/like/like4.png', '高新区 高新一路', 15, 10, '1200'),
+(3, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 6, 1, 0, './img/like/like3.png', '高新区 高新一路科技一路十字', 15, 10, '1200'),
+(4, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 0, 0, './img/like/like2.png', '高新区 高新一路科技一路十字', 15, 10, '1200');
 
+-- --------------------------------------------------------
 
-CREATE TABLE `zxkf_product_list` (
+--
+-- 表的结构 `zxkf_product_list`
+--
+
+DROP TABLE IF EXISTS `zxkf_product_list`;
+CREATE TABLE IF NOT EXISTS `zxkf_product_list` (
   `pid` int(11) NOT NULL COMMENT '商品id',
   `title` tinyint(4) DEFAULT NULL COMMENT '是否合租1：整租 0：合租',
   `address` char(64) DEFAULT NULL COMMENT '商品标题+地址',
@@ -157,6 +255,11 @@ CREATE TABLE `zxkf_product_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- 插入之前先把表清空（truncate） `zxkf_product_list`
+--
+
+TRUNCATE TABLE `zxkf_product_list`;
+--
 -- 转存表中的数据 `zxkf_product_list`
 --
 
@@ -167,7 +270,14 @@ INSERT INTO `zxkf_product_list` (`pid`, `title`, `address`, `price`, `housesize`
 (6, 0, '高新区 高新一路科技一路十字', 2000, '100', '4', '1室1厅1卫', './img/like/like4.png', 1, '西安', '水电煤网费涨就赔', '随时入住'),
 (7, 0, '高新区 高新一路科技一路十字', 2000, '100', '7', '1室1厅1卫', './img/like/like2.png', 1, '西安', '水电煤网费涨就赔', '随时入住');
 
-CREATE TABLE `zxkf_roommate` (
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `zxkf_roommate`
+--
+
+DROP TABLE IF EXISTS `zxkf_roommate`;
+CREATE TABLE IF NOT EXISTS `zxkf_roommate` (
   `rid` int(11) NOT NULL,
   `img` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
   `address` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
@@ -180,19 +290,22 @@ CREATE TABLE `zxkf_roommate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- 插入之前先把表清空（truncate） `zxkf_roommate`
+--
+
+TRUNCATE TABLE `zxkf_roommate`;
+--
 -- 转存表中的数据 `zxkf_roommate`
 --
 
 INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(1, './img/roomate/01.jpg', '太白南路', '2200 ', '整租', '限男', '2019.02.12', '1号地铁', '2019.09.18');
-INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(2, './img/roomate/02.jpg', '科技路', '2000 ', '整租', '限男', '2019.02.18', '1号地铁', '2019.09.16');
-INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(3, './img/roomate/03.jpg', '高新路', '2300 ', '合租', '限女', '2019.02.19', '3号地铁', '2019.09.15');
-INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(4, './img/roomate/02.jpg', '小寨', '1200 ', '合租', '限男', '2019.02.18', '2号地铁', '2019.09.14');
-INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
-(5, './img/roomate/01.jpg', '雁塔路', '2100 ', '整租', '限女', '2019.02.13', '3号地铁', '2019.09.12');
-INSERT INTO `zxkf_roommate` (`rid`, `img`, `address`, `price`, `type`, `getset`, `date`, `ditie`, `newDate`) VALUES
+(1, './img/roomate/01.jpg', '太白南路', '2200 ', '整租', '限男', '2019.02.12', '1号地铁', '2019.09.18'),
+(2, './img/roomate/02.jpg', '科技路', '2000 ', '整租', '限男', '2019.02.18', '1号地铁', '2019.09.16'),
+(3, './img/roomate/03.jpg', '高新路', '2300 ', '合租', '限女', '2019.02.19', '3号地铁', '2019.09.15'),
+(4, './img/roomate/02.jpg', '小寨', '1200 ', '合租', '限男', '2019.02.18', '2号地铁', '2019.09.14'),
+(5, './img/roomate/01.jpg', '雁塔路', '2100 ', '整租', '限女', '2019.02.13', '3号地铁', '2019.09.12'),
 (6, './img/roomate/03.jpg', '太白南路', '2000 ', '整租', '限男', '2019.02.25', '2号地铁', '2019.09.13');
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
