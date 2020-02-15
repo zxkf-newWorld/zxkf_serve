@@ -13,8 +13,10 @@ var server = express();
 // 3：配置跨域模块
 server.use(cors({
     // 允许跨域访问程序地址列表
-    origin:["http://127.0.0.1:8090",
-            "http://localhost:8090"
+    /* 打包替换地址 http://youthhouse.applinzi.com */
+    origin:[
+      "http://127.0.0.1:8090",
+      "http://localhost:8090"
     ],
     credentials:true,//请求验证（可以验证Cookie等信息）
 }));
@@ -24,11 +26,11 @@ server.use(bodyParser.urlencoded({extended:false}));
 server.use(session({
     secret:"128位字符串",//安全字符串
     resave:true,//请求时更新数据
-    saveUninitialized: true,//保存初始数据 
+    saveUninitialized: true,//保存初始数据
 }));
 //4.1：配置项目的静态目录
 // 可以在地址后面添加所需资源（名称/或者public下的路径+资源名称）
-server.use(express.static("public")); 
+server.use(express.static("public"));
 
 // 监听端口号3000
 server.listen(PORT,()=>{
