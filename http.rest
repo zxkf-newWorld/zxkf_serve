@@ -31,3 +31,15 @@ Content-Type: application/x-www-form-urlencoded;charset=UTF-8
 
 phone=18309225861
 &upwd=123456
+
+// 更新搜索历史记录接口
+###
+POST http://{{host}}/search_history/updateSearchHistory
+Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+
+phone=18309225861
+&searchHistory=
+
+//搜索历史记录接口
+###
+GET http://{{host}}/search_history/userSearchHistory?phone=18309225861

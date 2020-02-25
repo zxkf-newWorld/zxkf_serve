@@ -56,5 +56,7 @@ server.listen(PORT,()=>{
 // const demo = require("./routes/demo.js");
 const index = require("./routes/index");
 const login_reg = require("./routes/login_reg.js");
+const search_history = require('./routes/searchHistory.js');
 server.use("/index",index);
 server.use("/login_reg",login_reg);
+server.use('/search_history', search_history);

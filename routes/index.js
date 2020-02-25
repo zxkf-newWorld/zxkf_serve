@@ -73,7 +73,7 @@ router.get("/fullrent",(req,res)=>{
         selectFuc(obj,res);
     }
 });
-// 2:合租功能接口
+// 2:合租功能接口:以及猜我喜欢
 // 通过单击合租按钮，进入房屋信息列表 title:0
 router.get("/jointrent",(req,res)=>{
     let obj = req.query;
@@ -120,5 +120,4 @@ router.get("/tofunctions",(req,res)=>{
     // 相关数据库操作
     res.send({code:1,msg:'查询成功'});
 });
-
 module.exports = router;
