@@ -31,6 +31,7 @@ server.use(session({
 //4.1：配置项目的静态目录
 // 可以在地址后面添加所需资源（名称/或者public下的路径+资源名称）
 server.use(express.static("public"));
+server.use(express.static('avatar'));
 
 // 监听端口号3000
 server.listen(PORT,()=>{
