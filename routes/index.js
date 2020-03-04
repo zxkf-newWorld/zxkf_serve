@@ -120,4 +120,20 @@ router.get("/tofunctions",(req,res)=>{
     // 相关数据库操作
     res.send({code:1,msg:'查询成功'});
 });
+// 查找用户头像
+router.get('/searchUserAvatar', (req, res) => {
+  let phone = req.query.phone; /* 用户手机号 */
+  const sql = `SELECT * FROM zxkf_login WHERE phone=?`;
+  pool.query(sql, phone, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    if (result.length > 0) {
+      console.log('用户查找成功');
+      res.send({code: 1, msg: 'user finded', avatar: result[0].avatar});
+    } else {
+      res.send({ code: -1, msg: 'user unfinded'});
+    }
+  });
+});
 module.exports = router;

@@ -4,6 +4,7 @@ const pool = require("../pool");
 const multer = require("multer");
 const path = require("path");
 const gm = require('gm');
+const fs = require('fs');
 // 用户登录 : 手机号登录
 router.post("/login", (req, res) => {
   console.log(req.body);
@@ -17,7 +18,6 @@ router.post("/login", (req, res) => {
     if (err) console.log(err);
     console.log(result);
     if (result.length > 0) {
-      // req.session.uanme=result[0]["uname"]
       res.send({ code: 1, msg: "用户已注册，登录成功" });
     } else {
       res.send({ code: 0, msg: "用户名或密码错误！" });
@@ -43,6 +43,8 @@ router.post("/reg", function(req, res) {
 const upload = multer({ dest: "avatar/" });
 router.post("/crop", upload.single("img"), (req, res) => {
   const file = req.file;
+  const userPhone = req.body.userPhone;
+  console.log(userPhone, '<<<<< userPhone');
   console.log(file, '<<<< file');
   const imgType = file.mimetype.slice(file.mimetype.indexOf('/') + 1); /*  image type */
   // console.log(imgType);
@@ -56,8 +58,29 @@ router.post("/crop", upload.single("img"), (req, res) => {
     if (!err) {
       console.log('image upload done');
     }
+    fs.unlink(imgPath, (err) => {
+      if(err) {
+        throw err;
+      }
+      console.log('img is deleted');
+      // 数据库操作, 将图片存储在数据表zxkf_login 的 字段avatar,即更新avatar
+      // 打包替换地址
+      // const imageUrl = `http://youthhouse.applinzi.com/`
+      const imageUrl = `http://127.0.0.1:3000/`;
+      const sql = `UPDATE zxkf_login SET avatar=? WHERE phone=${userPhone}`
+      pool.query(sql, `${imageUrl}${fileName}` , (err, result) => {
+        if (err) {
+          throw err;
+        }
+        console.log(result, 'result');
+        if (result.affectedRows > 0) {
+          res.send({ code: 1, msg: 'avatar upload success', imgUrl: `${imageUrl}${fileName}`});
+        } else {
+          res.send({ code: -1, msg: 'avatar upload failed'});
+        }
+      });
+    });
   });
-  res.send({code: 1});
   return;
 });
 function createPic() {

@@ -6,7 +6,6 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const qs = require("querystring");
 // 引入数据库池
-
 const PORT = 3000;
 //创建服务器
 var server = express();
@@ -18,6 +17,7 @@ server.use(cors({
       "http://127.0.0.1:8090",
       "http://localhost:8090"
     ],
+    // origin: ['http://youthhouse.applinzi.com'],
     credentials:true,//请求验证（可以验证Cookie等信息）
 }));
 //使用body-parser中间件
