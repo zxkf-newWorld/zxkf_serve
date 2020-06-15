@@ -1,15 +1,13 @@
 // 创建数据库连接池
 const mysql = require("mysql");
-const pool = mysql.createPool(
-    {
-        host:"127.0.0.1",
-        user:"root",
-        password:"",
-        port:3306,
-        database:"zxkf",
-        connectionLimit:15
-    }
-);
+const pool = mysql.createPool({
+  host: "127.0.0.1",
+  user: "root",
+  password: "123456",
+  port: 3306,
+  database: "zxkf",
+  connectionLimit: 15
+});
 // const pool = mysql.createPool(
 //   {
 //       host:"w.rdc.sae.sina.com.cn",
